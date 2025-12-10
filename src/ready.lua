@@ -1,10 +1,10 @@
 
 mod.InfestedCerberus = {
     GrannyModel = "InfestedCerberus_Mesh",
-    Graphic = "Enemy_InfestedCerberus_Idle",
-    StartGraphic = "Enemy_InfestedCerberus_MoveStart",
-    MoveGraphic = "Enemy_InfestedCerberus_Move",
-    StopGraphic = "Enemy_InfestedCerberus_MoveStop",
+    Graphic = "Familiar_Cerberus_Idle",
+    StartGraphic = "Familiar_Cerberus_MoveStart",
+    MoveGraphic = "Familiar_Cerberus_Move",
+    StopGraphic = "Familiar_Cerberus_MoveStop",
     Package = "BiomeH",
 }
 
@@ -56,9 +56,9 @@ end
 
 
 CerbAnimation = {
-    "Enemy_InfestedCerberus_PoundRFire",
-    "Enemy_InfestedCerberus_BurrowStart",
-    "Enemy_InfestedCerberus_BurrowEmerge",
+    "Familiar_Cerberus_PoundRFire",
+    "Familiar_Cerberus_BurrowStart",
+    "Familiar_Cerberus_BurrowEmerge",
     "ShovelDirtInSprayHound",
     "ShovelDirtInSprayHound",
     "ShovelDirtOutSprayHound",
@@ -91,46 +91,88 @@ end)
 -- Familiar_Hound_Dig
 -- Familiar_Hound_DropIn_Enter
 
+function PlayPettingSounds(id)
+    Frames =
+    {
+        {
+            Frame = 47,
+            Sound = "/VO/CerberusCry",
+        },
+        {
+            Frame = 120,
+            Sound = "/VO/CerberusCuteGrowl_2",
+        },
+        {
+            Frame = 160,
+            Sound = "/VO/CerberusWhineHappy",
+        },
+        {
+            Frame = 210,
+            Sound = "/VO/CerberusCuteWhine_3",
+        },
+        {
+            Frame = 290,
+            Sound = "/VO/CerberusSnarls",
+        },
+        {
+            Frame = 360,
+            Sound = "/VO/CerberusCry",
+        },
+        {
+            Frame = 420,
+            Sound = "/VO/CerberusCuteGrowl_3",
+        },
+    }
+    local lastFrame = 0.0
+    wait(47/60.0)
+    for index, sound in ipairs(Frames) do
+        PlaySound({ Name = sound.Sound, Id = id, ManagerCap = nil })
+        lastFrame = sound.Frame
+    end
+end
+
 modutil.mod.Path.Wrap("SetAnimation", function (base, args)
     if args.Name == "Familiar_Hound_Attack" then
-        args.Name = "Enemy_InfestedCerberus_PoundRFire"
+        args.Name = "Familiar_Cerberus_PoundRFire"
         if math.random(2) == 1 then
-            args.Name = "Enemy_InfestedCerberus_PoundLFire"
+            args.Name = "Familiar_Cerberus_PoundLFire"
         end
         return base(args)
     end
     if args.Name == "Familiar_Hound_Dig" or args.Name == "Familiar_Hound_Dig_ShovelPoint" then
-        args.Name = "Enemy_InfestedCerberus_BurrowStart"
+        args.Name = "Familiar_Cerberus_BurrowStart"
         base(args)
-        args.Name = "Enemy_InfestedCerberus_BurrowEmerge"
+        args.Name = "Familiar_Cerberus_BurrowEmerge"
         waitUnmodified( 1.8, MapState.FamiliarUnit.AIThreadName )
         base(args)
         return
     end
     if args.Name == "Familiar_Hound_DropIn_Enter" then
-        args.Name = "Enemy_InfestedCerberus_BurrowEmerge"
+        args.Name = "Familiar_Cerberus_BurrowEmerge"
         base(args)
         return
     end
     if args.Name == "Familiar_Hound_DropIn_Exit" then
-        args.Name = "Enemy_InfestedCerberus_BurrowStart"
+        args.Name = "Familiar_Cerberus_BurrowStart"
         base(args)
         return
     end
     if args.Name == "Familiar_Hound_StandToSit" or args.Name == "Familiar_Hound_SitToStand" or
        args.Name == "Familiar_Hound_Sit_Idle" or args.Name == "Familiar_Hound_Stande_Idle" or
        args.Name == "Familiar_Hound_Sit" or args.Name == "Familiar_Hound_Stand" then
-        args.Name = "Enemy_InfestedCerberus_Idle"
+        args.Name = "Familiar_Cerberus_Idle"
         base(args)
         return
     end
     if args.Name == "Familiar_Hound_Pet" then
-        args.Name = "Enemy_InfestedCerberus_Howl"
+        args.Name = "Familiar_Cerberus_Howl"
         base(args)
+        -- PlaySound({ Name = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_PlagueRoar", Id = args.DestinationId, ManagerCap = nil })
+        PlayPettingSounds(args.DestinationId)
         return
     end
     if args.Name == "Familiar_Hound_HubHangout_1_Greet" then
-        args.Name = "Enemy_InfestedCerberus_Idle"
+        args.Name = "Familiar_Cerberus_Idle"
         base(args)
         return
     end
@@ -142,6 +184,6 @@ end)
 
 modutil.mod.Path.Wrap("SetupMap", function (base)
     LoadPackages({Name = mod.InfestedCerberus.Package})
-    LoadVoiceBanks({ Name = "MelinoeField" })
+    LoadVoiceBanks({ Names = { "BiomeI", "BiomeIHouse" }})
     base()
 end)

@@ -20,3 +20,5 @@ mod.CerbInteractVoice = {
 }
 
 game.FamiliarData.HoundFamiliar.InteractVoiceLines[2] = mod.CerbInteractVoice
+
+-- /SFX/Enemy Sounds/CorruptedCerberus/Cerberus_PlagueRoar

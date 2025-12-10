@@ -1,0 +1,1146 @@
+{ Animations = [
+	
+	{
+		Name = "EnemyInfestedCerberusBaseAnimation"
+		GrannyModel = "InfestedCerberus_Mesh"
+		GrannyAnimation = "null"
+		GrannyAnimationSpeed = 1.0
+		Scale = 1.0
+		Loop = false
+		Enable3DShadow = true
+		OwnerNoInvulnerableCoverage = true
+		LargeObstacle3DModel = true
+	}
+
+	/*Idle and Move*/
+
+	{
+		Name = "Familiar_Cerberus_Idle"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_Idle_C_00"
+		Loop = true
+		CancelOnOwnerMove = true
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Move"
+				Duration = 4
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_MoveStart"
+				Duration = 4
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_VacuumPostFire"
+				Duration = 4
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_BarkPostFire"
+				Duration = 4
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_PoundLPostFire"
+				Duration = 4
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_Hidden"
+		InheritFrom = "Familiar_Cerberus_Idle"
+		OwnerUntargetable = true
+		OwnerHasNoCollision = true
+		OwnerInvulnerable = true
+		Alpha = 0
+	}
+
+	{
+		Name = "Familiar_Cerberus_Move"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_Move_C_00"
+		Loop = true
+		GrannyAnimationSpeed = 1.0
+		NativeMoveSpeed = 400
+		VisualFxDistanceMin = 100
+		VisualFxDistanceMax = 150
+		VisualFx = "Familiar_Cerberus_CerbBibMoveTrail"
+		CreateAnimation = "Familiar_Cerberus_CerbBibMoveTrail"
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 4
+			}
+		]
+		Frames =
+		[
+			{
+				Frame = 20
+				FootstepFxR = "Familiar_Cerberus_CerbPawPrintLeftSpawner"
+				FootstepFxL = ""
+			}
+			{
+				Frame = 60
+				FootstepFxR = ""
+				FootstepFxL = "Familiar_Cerberus_CerbPawPrintRightSpawner"
+			}
+		]
+
+	}
+
+	{
+		Name = "Familiar_Cerberus_MoveStart"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_MoveStart_C_00"
+		ChainTo = "Familiar_Cerberus_Move"
+		GrannyAnimationSpeed = 1.5
+
+		Blends =
+		[
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 4
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_MoveStop"
+				Duration = 4
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_MoveStop"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_MoveStop_C_00"
+		CancelOnOwnerMove = true
+		ChainTo = "Familiar_Cerberus_Idle"
+		GrannyAnimationSpeed = 1.5
+
+		Blends =
+		[
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Move"
+				Duration = 4
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_MoveStart"
+				Duration = 4
+			}
+		]
+	}
+
+	// Block
+	{
+		Name = "Familiar_Cerberus_BlockStart"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_BlockStart_00"
+		HoldLastFrame = true
+		Blends =
+		[
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 6
+			}
+		]
+	}
+	{
+		Name = "Familiar_Cerberus_BlockLoop"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_BlockLoop_00"
+		OwnerNoInvulnerableCoverage = false
+		Loop = true
+	}
+	{
+		Name = "Familiar_Cerberus_BlockEnd"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_BlockReturn_00"
+		GrannyAnimationSpeed = 2
+		ChainTo = "Familiar_Cerberus_Idle"
+		Blends =
+		[
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_BlockLoop"
+				Duration = 6
+			}
+		]
+	}
+
+
+	// Swipe
+
+	{
+		Name = "Familiar_Cerberus_SwipePreFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_SwipeAntic_C_00"
+		GrannyAnimationSpeed = 1.4
+		HoldLastFrame = true
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 4
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_SwipeFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_SwipeFire_C_00"
+		ChainTo = "Familiar_Cerberus_SwipePostFire"
+		Sound = "/SFX/Enemy Sounds/CorruptedCerberus/CerberusSwipe"
+	}
+
+	{
+		Name = "Familiar_Cerberus_SwipePostFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_SwipeReturnToIdle_C_00"
+		ChainTo = "Familiar_Cerberus_Idle"
+	}
+
+	// Forward Bite
+	{
+		Name = "Familiar_Cerberus_ForwardBitePreFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_ForwardBiteAntic_C_00"
+		HoldLastFrame = true
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 4
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_MoveStart"
+				Duration = 4
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Move"
+				Duration = 4
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_ForwardBiteFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_ForwardBiteFire_C_00"
+		ChainTo = "Familiar_Cerberus_ForwardBitePostFire"
+		VisualFxDistanceMin = 100
+		VisualFxDistanceMax = 150
+		VisualFx = "Familiar_Cerberus_CerbBibMoveTrailFast"
+		CreateAnimation = "Familiar_Cerberus_CerbForwardStreaks"
+		Frames =
+		[
+			{
+				Frame = 13
+				FootstepFxR = "CerbBiteFxC"
+				FootstepFxL = ""
+			}
+			{
+				Frame = 14
+				FootstepFxR = "CerbPawPrintRightSpawner"
+				FootstepFxL = ""
+			}
+			{
+				Frame = 6
+				FootstepFxR = "CerbBiteFxL"
+				FootstepFxL = ""
+			}
+			{
+				Frame = 19
+				FootstepFxR = "CerbBiteFxR"
+				FootstepFxL = ""
+			}
+			{
+				Frame = 21
+				FootstepFxR = ""
+				FootstepFxL = "Familiar_Cerberus_CerbPawPrintLeftSpawner"
+			}
+		]
+	}
+
+	// Lunge Turn
+	{
+		Name = "Familiar_Cerberus_LungeTurn"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_ForwardBiteFire_C_00"
+		ChainTo = "Familiar_Cerberus_ForwardBitePostFire"
+		VisualFxDistanceMin = 100
+		VisualFxDistanceMax = 150
+		VisualFx = "CerbBibMoveTrailFast"
+		CreateAnimation = "CerbForwardStreaks"
+		Frames =
+		[
+			{
+				Frame = 14
+				FootstepFxR = "Familiar_Cerberus_CerbPawPrintRightSpawner"
+				FootstepFxL = ""
+			}
+			{
+				Frame = 21
+				FootstepFxR = ""
+				FootstepFxL = "Familiar_Cerberus_CerbPawPrintLeftSpawner"
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_ForwardBitePostFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_ForwardBiteReturnToIdle_C_00"
+		ChainTo = "Familiar_Cerberus_Idle"
+	}
+
+	// Pound Left
+	{
+		Name = "Familiar_Cerberus_PoundLPreFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_GroundPoundAntic_L_00"
+		HoldLastFrame = true
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 4
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_PoundRPostFire"
+				Duration = 8
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_BlockEnd"
+				Duration = 6
+			}
+		]
+
+		Frames =
+		[
+			{
+				Frame = 0
+				FrameSpeed = 0.0
+			}
+			{
+				Frame = 10
+				FrameSpeed = 0.85
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_PoundLFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_GroundPoundFire_L_00"
+		ChainTo = "Familiar_Cerberus_PoundLPostFire"
+	}
+
+	{
+		Name = "Familiar_Cerberus_PoundLPostFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_GroundPoundReturnToIdle_L_00"
+		ChainTo = "Familiar_Cerberus_Idle"
+	}
+
+	// Pound Right
+	{
+		Name = "Familiar_Cerberus_PoundRPreFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_GroundPoundAntic_R_00"
+		HoldLastFrame = true
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 4
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_PoundLPostFire"
+				Duration = 8
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_BlockEnd"
+				Duration = 6
+			}
+		]
+
+		Frames =
+		[
+			{
+				Frame = 0
+				FrameSpeed = 0.0
+			}
+			{
+				Frame = 10
+				FrameSpeed = 0.85
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_PoundRFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_GroundPoundFire_R_00"
+		ChainTo = "Familiar_Cerberus_PoundRPostFire"
+	}
+
+	{
+		Name = "Familiar_Cerberus_PoundRPostFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_GroundPoundReturnToIdle_R_00"
+		ChainTo = "Familiar_Cerberus_Idle"
+	}
+
+	// Vacuum
+	{
+		Name = "Familiar_Cerberus_VacuumPreFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_VacuumAntic_C_00"
+		HoldLastFrame = true
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 4
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_VacuumFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_VacuumFire_C_00"
+		ChainTo = "Familiar_Cerberus_VacuumFireLoop"
+	}
+
+	{
+		Name = "Familiar_Cerberus_VacuumFireLoop"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_VacuumLoop_C_00"
+		Loop = true
+	}
+
+	{
+		Name = "Familiar_Cerberus_VacuumPostFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_VacuumReturnToIdle_C_00"
+		GrannyAnimationSpeed = 4.0
+		ChainTo = "Familiar_Cerberus_Idle"
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_VacuumFireLoop"
+				Duration = 4
+			}
+		]
+	}
+
+	// Howl
+	{
+		Name = "Familiar_Cerberus_Howl"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_Howl_C_00"
+		OwnerImmobile = true
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 4
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_Howl_Summons"
+		InheritFrom = "Familiar_Cerberus_Howl"
+		CreateAnimation = "CerberusSummonHowlFx"
+	}
+
+	// Bark
+	{
+		Name = "Familiar_Cerberus_BarkPreFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_BarkStart_C_00"
+		HoldLastFrame = true
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 4
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_BarkFireLoop"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_BarkLoopC_00"
+		Loop = true
+		Frames =
+		[
+			{
+				Frame = 1
+				Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Bark"
+			}
+			{
+				Frame = 6
+				Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Bark"
+			}
+			{
+				Frame = 11
+				Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Bark"
+			}
+			{
+				Frame = 30
+				Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Bark"
+			}
+			{
+				Frame = 59
+				Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Bark"
+			}
+			{
+				Frame = 85
+				Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Bark"
+			}
+			{
+				Frame = 102
+				Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Bark"
+			}
+			{
+				Frame = 121
+				Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Bark"
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_BarkPostFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_BarkReturnToIdle_C_00"
+		ChainTo = "Familiar_Cerberus_Idle"
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_BarkFireLoop",
+				Duration = 16
+			}
+		]
+	}
+
+	// Back Swipe Right
+	{
+		Name = "Familiar_Cerberus_BackSwipeRPreFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_SwipeBackRightAntic_C_00"
+		HoldLastFrame = true
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 6
+			}
+		]
+	}
+	{
+		Name = "Familiar_Cerberus_BackSwipeRFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_SwipeBackRightFire_C_00"
+		ChainTo = "Familiar_Cerberus_BackSwipeRPostFire"
+		Sound = "/SFX/Enemy Sounds/CorruptedCerberus/CerberusSwipe"
+	}
+	{
+		Name = "Familiar_Cerberus_BackSwipeRPostFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_SwipeBackRightReturn_C_00"
+		ChainTo = "Familiar_Cerberus_Idle"
+	}
+
+	// Back Swipe Left
+	{
+		Name = "Familiar_Cerberus_BackSwipeLPreFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_SwipeBackLeftAntic_C_00"
+		HoldLastFrame = true
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 6
+			}
+		]
+	}
+	{
+		Name = "Familiar_Cerberus_BackSwipeLFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_SwipeBackLeftFire_C_00"
+		ChainTo = "Familiar_Cerberus_BackSwipeLPostFire"
+		Sound = "/SFX/Enemy Sounds/CorruptedCerberus/CerberusSwipe"
+	}
+	{
+		Name = "Familiar_Cerberus_BackSwipeLPostFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_SwipeBackLeftReturn_C_00"
+		ChainTo = "Familiar_Cerberus_Idle"
+	}
+
+	// Shake
+	{
+		Name = "Familiar_Cerberus_Shake"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_Shake_C_00"
+		Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Shake"
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 4
+			}
+		]
+	}
+	{
+		Name = "Familiar_Cerberus_DeathTransition"
+		InheritFrom = "Familiar_Cerberus_Shake"
+		LargeObstacle3DModel = true
+		GrannyAnimationSpeed = 0.5
+		ChainTo = "Cerberus_HubIdleNonBink"
+		Sound = "/SFX/Player Sounds/MelMagicalChargeLoop"
+		StopSoundOnFinishFade = 0.2
+		Frames =
+		[
+			{
+				Frame = 1
+				Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Defeated"
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_ShakeSlow"
+		InheritFrom = "Familiar_Cerberus_Shake"
+		GrannyAnimationSpeed = 0.6
+	}
+
+	{
+		Name = "Familiar_Cerberus_TurnHopPreFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_TurnHop_C_00"
+		GrannyAnimationSpeed = 1.0
+		HoldLastFrame = true
+
+		Frames =
+		[
+			{
+				Frame = 0
+				FrameSpeed = 3.0
+			}
+			{
+				Frame = 37
+				FrameSpeed = 0.65
+			}
+			{
+				Frame = 46
+				FrameSpeed = 0
+			}
+		]
+
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 4
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_TurnHopFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_TurnHop_C_00"
+		GrannyAnimationSpeed = 1.0
+		ChainTo = "Familiar_Cerberus_Idle"
+
+		Frames =
+		[
+			{
+				Frame = 0
+				FrameSpeed = 0
+			}
+			{
+				Frame = 47
+				FrameSpeed = 1
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_BurrowStart"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_BurrowStart_C_00"
+		OwnerImmobile = true
+		ChainTo = "Familiar_Cerberus_Hidden"
+		Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Dig"
+		StartRed = 1
+		StartGreen = 1
+		StartBlue = 1
+		EndRed = 0
+		EndGreen = 0
+		EndBlue = 0
+		StartAlpha = 1
+		EndAlpha = 0
+		EaseIn = 0
+		EaseOut = 0.1
+		Duration = 1.66
+		VerticalMaskInModelSpace = true
+		Frames =
+		[
+			{
+				Frame = 0
+				VerticalMask = 1.0
+			}
+			{
+				Frame = 20
+				VerticalMask = 1.0
+			}
+			{
+				Frame = 30
+				FootstepFxR = "CerbDirtScrapeR"
+			}
+			{
+				Frame = 40
+				FootstepFxR = "CerberusLargeHole"
+			}
+			{
+				Frame = 43
+				FootstepFxR = "CerbDirtScrapeL"
+			}
+			{
+				Frame = 50
+				VerticalMask = 0.8
+			}
+			{
+				Frame = 54
+				FootstepFxR = "CerbDirtScrapeR"
+			}
+			{
+				Frame = 90
+				VerticalMask = 0.0
+			}
+			{
+				Frame = 119
+				VerticalMask = 0.0
+			}
+		]
+		Blends =
+		[
+			{
+				BlendTransitionFrom = "BlendTransitionFromAll"
+				Duration = 8
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_BurrowEmerge"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_BurrowEmerge_C_00"
+		ChainTo = "Familiar_Cerberus_BurrowToIdle"
+		OwnerImmobile = true
+		GrannyAnimationSpeed = 1.0
+		Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Emerge"
+		VerticalMaskInModelSpace = true
+		LargeObstacle3DModel = true
+		Frames =
+		[
+			{
+				Frame = 0
+				VerticalMask = 0.0
+			}
+			{
+				Frame = 10
+				VerticalMask = 0.0
+			}
+			{
+				Frame = 14
+				FootstepFxR = "CerberusEmergeFx"
+			}
+			{
+				Frame = 16
+				VerticalMask = 0.6
+			}
+			{
+				Frame = 18
+				VerticalMask = 0.75
+			}
+			{
+				Frame = 23
+				VerticalMask = 0.85
+			}
+			{
+				Frame = 34
+				VerticalMask = 1.0
+			}
+		]
+	}
+	{
+		Name = "Familiar_Cerberus_BurrowEmerge_Intro"
+		InheritFrom = "Familiar_Cerberus_BurrowEmerge"
+		GrannyAnimationSpeed = 0.6
+		ChainTo = "Familiar_Cerberus_BurrowEmerge_Intro2"
+		VerticalMaskInModelSpace = true
+		Enable3DShadow = false
+		Frames =
+		[
+			{
+				Frame = 0
+				VerticalMask = 0.0
+			}
+			{
+				Frame = 10
+				VerticalMask = 0.0
+			}
+			{
+				Frame = 14
+				FootstepFxR = "CerberusEmergeFx"
+			}
+			{
+				Frame = 16
+				VerticalMask = 0.6
+			}
+			{
+				Frame = 18
+				VerticalMask = 0.75
+				FrameSpeed = 0.0
+			}
+		]
+	}
+	{
+		Name = "Familiar_Cerberus_BurrowEmerge_Intro2"
+		InheritFrom = "Familiar_Cerberus_BurrowEmerge"
+		GrannyAnimationSpeed = 0.6
+		ChainTo = "Familiar_Cerberus_BurrowToIdle_Intro"
+		VerticalMaskInModelSpace = true
+		Enable3DShadow = true
+		Frames =
+		[
+			{
+				Frame = 0
+				FrameSpeed = 0.0
+				VerticalMask = 0.75
+			}
+			{
+				Frame = 18
+				FrameSpeed = 1.0
+				VerticalMask = 0.75
+			}
+			{
+				Frame = 23
+				VerticalMask = 0.85
+			}
+			{
+				Frame = 34
+				VerticalMask = 1.0
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_BurrowToIdle"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_BurrowReturnToIdle_C_00"
+		OwnerImmobile = true
+		GrannyAnimationSpeed = 2.0
+	}
+	{
+		Name = "Familiar_Cerberus_BurrowToIdle_Intro"
+		InheritFrom = "Familiar_Cerberus_BurrowToIdle"
+		GrannyAnimationSpeed = 0.6
+	}
+
+
+	{
+		Name = "Familiar_Cerberus_L_BreathPreAttack"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_FireballAntic_L_00"
+		HoldLastFrame = true
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_Idle"
+				Duration = 4
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_L_BreathFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_FireballFire_L_00"
+		ChainTo = "Familiar_Cerberus_L_BreathFireLoop"
+	}
+
+	{
+		Name = "Familiar_Cerberus_L_BreathFireLoop"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_FireballLoop_L_00"
+		Loop = true
+	}
+
+	{
+		Name = "Familiar_Cerberus_L_BreathPostFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_FireballReturnToIdle_L_00"
+		ChainTo = "Familiar_Cerberus_Idle"
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_L_BreathFireLoop",
+				Duration = 4
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_R_BreathPreAttack"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_FireballAntic_R_00"
+		HoldLastFrame = true
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_C_BreathPostFire",
+				Duration = 8
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_R_BreathFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_FireballFire_R_00"
+		ChainTo = "Familiar_Cerberus_R_BreathFireLoop"
+	}
+
+	{
+		Name = "Familiar_Cerberus_R_BreathFireLoop"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_FireballLoop_R_00"
+		Loop = true
+	}
+
+	{
+		Name = "Familiar_Cerberus_R_BreathPostFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_FireballReturnToIdle_R_00"
+		ChainTo = "Familiar_Cerberus_Idle"
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_R_BreathFireLoop",
+				Duration = 4
+			}
+		]
+
+	}
+
+	{
+		Name = "Familiar_Cerberus_C_BreathPreAttack"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_FireballAntic_C_00"
+		HoldLastFrame = true
+		Blends =
+		[
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_L_BreathPostFire",
+				Duration = 8
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_C_BreathFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_FireballFire_C_00"
+		ChainTo = "Familiar_Cerberus_C_BreathFireLoop"
+	}
+
+	{
+		Name = "CerbBreathFireMouthGlow"
+		FilePath = "Particles\particle_glow_egg_horizontal"
+		ScaleX = 1
+		GroupName = "FX_Standing_Add"
+		SortMode = "FromParent"
+		SortFromOwner = "Maintain"
+		StartRed = 1
+		StartGreen = 0.3
+		StartBlue = 0.1
+		EndRed = 0.999
+		EndGreen = 0.5
+		EndBlue = 0.25
+		PingPongColor = true
+		StartAlpha = 0.5
+		EndAlpha = 1
+		RandomDurationMin = 0.4
+		RandomDurationMax = 0.6
+		StartScale = 1
+		EndScale = 1.5
+		PingPongScale = true
+		Loop = true
+		Material = "Unlit"
+		Scale = 1
+		OffsetZ = -60
+		ScaleFromOwner = "Ignore"
+		GrannyAttachedMarkerLocation = "InfestedCerberus_Rig:upperJaw_01_M_JNT"
+		OriginX = 120
+		OriginY = 84
+	}
+
+	{
+		Name = "Familiar_Cerberus_C_BreathFireLoop"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_FireballLoop_C_00"
+		Loop = true
+		CreateAnimation = "CerbBreathFireMouthGlow"
+		Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Fireballs"
+		StopSoundOnFinishFade = 0.4
+	}
+
+	{
+		Name = "Familiar_Cerberus_C_BreathPostFire"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_FireballReturnToIdle_C_00"
+		ChainTo = "Familiar_Cerberus_Idle"
+		Blends =
+		[	
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_C_BreathFireLoop",
+				Duration = 8
+			}
+		]
+	}
+
+    /* vfx */
+
+    {
+		Name = "Familiar_Cerberus_CerbPawPrint"
+		FilePath = "Fx\Cerb\CerbPawPrint\CerbPawPrint"
+		NumFrames = 30
+		GroupName = "FX_Terrain"
+		PostRotateScaleY = 0.6
+		AngleFromOwner = "Take"
+		Scale = 1.33
+		LocationZFromOwner = "Ignore"
+		LocationFromOwner = "Ignore"
+		UseAttachedFlasher = false
+		UseAttachedShake = false
+		Slides =
+		[
+			{ DurationFrames = 600 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+			{ DurationFrames = 2 }
+		]
+	}
+
+    {
+		Name = "Familiar_Cerberus_CerbPawPrintMove"
+		InheritFrom = "Familiar_Cerberus_CerbPawPrint"
+		CreateAnimations =
+		[
+			{ Name = "Familiar_Cerberus_CerberusTurnSlamDustPuffFront" }
+			{ Name = "CerberusTurnSlamDustPuffBack" }
+			{ Name = "CerbDirtSlamMove" }
+		]
+	}
+
+    {
+		Name = "Familiar_Cerberus_CerberusTurnSlamDustPuffFront"
+		FilePath = "Fx\FieldsDustPuffFront\FieldsDustPuffFront"
+		PlaySpeed = 30
+		NumFrames = 40
+		UseOwnAngle = false
+		AngleFromOwner = "Ignore"
+		LocationFromOwner = "Ignore"
+		LocationZFromOwner = "Ignore"
+		ColorFromOwner = "Ignore"
+		Red = 1
+		Green = 0.75
+		Blue = 0.55
+		Value = 0
+		ScaleFromOwner = "Ignore"
+		Scale = 1.2
+		StartAlpha = 0.7
+		EndAlpha = 0.5
+		OffsetZ = -60
+		DieWithOwner = false
+		GroupName = "FX_Standing"
+
+	}
+
+    {
+		Name = "Familiar_Cerberus_CerbPawPrintLeftSpawner"
+		InheritFrom = "Familiar_Cerberus_CerbPawPrintRightSpawner"
+		GrannyAttachedMarkerLocation = "InfestedCerberus_Rig:hand_01_L_JNT"
+	}
+
+    {
+		Name = "Familiar_Cerberus_CerbPawPrintRightSpawner"
+		FilePath = "Dev\blank_invisible"
+		DurationFrames = 4
+		GrannyAttachedMarkerLocation = "InfestedCerberus_Rig:hand_01_R_JNT"
+		VisualFx = "Familiar_Cerberus_CerbPawPrintMove"
+		VisualFxIntervalMin = 0.001
+		VisualFxIntervalMax = 0.001
+		VisualFxCap = 1
+	}
+
+    {
+		Name = "Familiar_Cerberus_CerbBibMoveTrail"
+		FilePath = "Fx\Cerb\CerbBibTrail\CerbBibTrail"
+		NumFrames = 60
+		UseOwnAngle = false
+		AngleFromOwner = "Ignore"
+		GroupName = "FX_Terrain"
+		ScaleMin = 0.8
+		ScaleMax = 1.1
+		RandomFlipHorizontal = true
+		RandomPlaySpeedMin = 24
+		RandomPlaySpeedMax = 30
+		LocationZFromOwner = "Ignore"
+		LocationFromOwner = "Ignore"
+		ScaleFromOwner = "Ignore"
+		UseAttachedFlasher = false
+		UseAttachedShake = false
+		Scale = 0.7
+		Hue = 0.05
+		Saturation = 0.15
+		Value = -0.05
+	}
+
+]}

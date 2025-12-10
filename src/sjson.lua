@@ -48,12 +48,29 @@ local cerbhoundTrail = {
 local vfxFile = rom.path.combine(rom.paths.Content(), "Game\\Animations\\Enemy_Fields_VFX.sjson")
 
 sjson.hook(vfxFile, function(data)
+    local newdata = {}
     for index, value in ipairs(data.Animations) do
         if value.Name == "CerbBibMoveTrail" then
-            value.ScaleFromOwner = "Take"
-            -- value.Scale = nil
-            -- value.ScaleMin = 0.1
-            -- value.ScaleMax = 1.5
+            local newentry = DeepCopyTable(value)
+            newentry.Scale = value.Scale * 0.4
+            newentry.Name = "Familiar_Cerberus_" .. value.Name
+            table.insert(newdata,newdata)
         end
+    end
+    for index, value in ipairs(newdata) do
+        table.insert(data.Animations,value)
+    end
+end)
+
+local cerberusFile = rom.path.combine(rom.paths.Content(), "Game\\Animations\\Model\\Enemy_InfestedCerberus_Animation.sjson")
+
+sjson.hook(cerberusFile, function (data)
+    local cerbFamiliarFile = rom.path.combine(rom.paths.plugins(), _PLUGIN.guid .. "\\CerbHound.sjson")
+    print(cerbFamiliarFile)
+    local fileHandle = io.open(cerbFamiliarFile,"r")
+    local cerbFamiliarContent = fileHandle:read("*a")
+    local cerbTable = sjson.decode(cerbFamiliarContent)
+    for key, value in pairs(cerbTable.Animations) do
+        table.insert(data.Animations, value)
     end
 end)
