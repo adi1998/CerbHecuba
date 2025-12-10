@@ -5,7 +5,7 @@ schemaVersion = "0.1.0"
 [package]
 namespace = "zerp"
 name = "Cerberus_Familiar"
-versionNumber = "0.1.0"
+versionNumber = "0.2.0"
 description = "Hades 2 mod which replaces Hecuba's model with Cerberus'"
 websiteUrl = "https://github.com/adi1998/CerbHecuba"
 containsNsfwContent = false
