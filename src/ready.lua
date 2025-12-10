@@ -40,7 +40,7 @@ function SetupHoundCerb()
         return
     end
     print("hound to creb")
-    houndId = houndIds[1]
+    local houndId = houndIds[1]
     SetThingProperty({ Property = "GrannyModel", Value = mesh, DestinationId = houndId })
     SetThingProperty({ Property = "Graphic", Value = graphic, DestinationId = houndId })
     SetUnitProperty({ Property = "StartGraphic", Value = start, DestinationId = houndId })
@@ -156,6 +156,8 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
         if math.random(2) == 1 then
             args.Name = "Familiar_Cerberus_PoundLFire"
         end
+        PlaySound({ Name = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_ChargeGrowl", Id = args.DestinationId, ManagerCap = nil })
+        PlaySound({ Name = "/SFX/Enemy Sounds/Minotaur/HugeAxeSwing", Id = args.DestinationId, ManagerCap = nil })
         return base(args)
     end
     if args.Name == "Familiar_Hound_Dig" or args.Name == "Familiar_Hound_Dig_ShovelPoint" then
