@@ -27,21 +27,28 @@ function SetupHoundCerb()
         stop = nil
     end
     
-    local familiar = MapState.FamiliarUnit
-    if familiar == nil then
+    -- local familiar = MapState.FamiliarUnit
+    -- if familiar == nil then
+    --     return
+    -- end
+    -- if GameState.EquippedFamiliar ~= "HoundFamiliar" then
+    --     return
+    -- end
+
+    local houndIds = GetIdsByType({ Name = "HoundFamiliar" })
+    if #houndIds < 1 then
         return
     end
-    if GameState.EquippedFamiliar ~= "HoundFamiliar" then
-        return
-    end
-    SetThingProperty({ Property = "GrannyModel", Value = mesh, DestinationId = familiar.ObjectId })
-    SetThingProperty({ Property = "Graphic", Value = graphic, DestinationId = familiar.ObjectId })
-    SetUnitProperty({ Property = "StartGraphic", Value = start, DestinationId = familiar.ObjectId })
-	SetUnitProperty({ Property = "MoveGraphic", Value = move, DestinationId = familiar.ObjectId })
-	SetUnitProperty({ Property = "StopGraphic", Value = stop, DestinationId = familiar.ObjectId })
-    SetThingProperty({ Property = "GrannyTexture", Value = texture, DestinationId = familiar.ObjectId })
+    print("hound to creb")
+    houndId = houndIds[1]
+    SetThingProperty({ Property = "GrannyModel", Value = mesh, DestinationId = houndId })
+    SetThingProperty({ Property = "Graphic", Value = graphic, DestinationId = houndId })
+    SetUnitProperty({ Property = "StartGraphic", Value = start, DestinationId = houndId })
+	SetUnitProperty({ Property = "MoveGraphic", Value = move, DestinationId = houndId })
+	SetUnitProperty({ Property = "StopGraphic", Value = stop, DestinationId = houndId })
+    SetThingProperty({ Property = "GrannyTexture", Value = texture, DestinationId = houndId })
     
-    SetScale({ Id = familiar.ObjectId, Fraction = 0.4 })
+    SetScale({ Id = houndId, Fraction = 0.4 })
 end
 
 -- "Familiar_Hound_Attack",
@@ -60,13 +67,18 @@ CerbAnimation = {
 FamiliarData.HoundFamiliar.Using.Animation = CerbAnimation
 
 
+modutil.mod.Path.Wrap("AssignFamiliarKits", function (base, ...)
+    base(...)
+    SetupHoundCerb()
+end)
+
 modutil.mod.Path.Wrap("FamiliarSetup", function (base, source, args)
     base(source, args)
     SetupHoundCerb()
 end)
 
-modutil.mod.Path.Wrap("SetupFamiliarCostume", function (base, familiar,args)
-    if GameState.EquippedFamiliar == "HoundFamiliar" then
+modutil.mod.Path.Wrap("SetupFamiliarCostume", function (base, familiar, args)
+    if familiar.Name == "HoundFamiliar" then
         SetupHoundCerb()
         return
     end
@@ -91,7 +103,7 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
         args.Name = "Enemy_InfestedCerberus_BurrowStart"
         base(args)
         args.Name = "Enemy_InfestedCerberus_BurrowEmerge"
-        waitUnmodified( 1.6, MapState.FamiliarUnit.AIThreadName )
+        waitUnmodified( 1.8, MapState.FamiliarUnit.AIThreadName )
         base(args)
         return
     end
@@ -105,7 +117,9 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
         base(args)
         return
     end
-    if args.Name == "Familiar_Hound_StandToSit" or args.Name == "Familiar_Hound_SitToStand" or args.Name == "Familiar_Hound_Sit" or args.Name == "Familiar_Hound_Stand" then
+    if args.Name == "Familiar_Hound_StandToSit" or args.Name == "Familiar_Hound_SitToStand" or
+       args.Name == "Familiar_Hound_Sit_Idle" or args.Name == "Familiar_Hound_Stande_Idle" or
+       args.Name == "Familiar_Hound_Sit" or args.Name == "Familiar_Hound_Stand" then
         args.Name = "Enemy_InfestedCerberus_Idle"
         base(args)
         return
@@ -119,6 +133,9 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
         args.Name = "Enemy_InfestedCerberus_Idle"
         base(args)
         return
+    end
+    if args.Name:find("^Familiar_Hound_") then
+        print("missing hound animation override", args.Name)
     end
     return base(args)
 end)
