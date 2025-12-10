@@ -40,7 +40,6 @@ target = "./plugins"
 # source = "./data"
 # target = "./plugins_data"
 
-
 [publish]
 repository = "https://thunderstore.io"
 communities = [ "hades-ii", ]

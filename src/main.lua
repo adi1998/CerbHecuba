@@ -43,6 +43,7 @@ local function on_ready()
     if config.enabled == false then return end
     mod = modutil.mod.Mod.Register(_PLUGIN.guid)
     import 'sjson.lua'
+    import 'voice.lua'
     import 'ready.lua'
 end
 
@@ -60,3 +61,16 @@ local loader = reload.auto_single()
 modutil.once_loaded.game(function()
     loader.load(on_ready, on_reload)
 end)
+
+function dump(o)
+   if type(o) == 'table' then
+      local s = '{ '
+      for k,v in pairs(o) do
+         if type(k) ~= 'number' then k = '"'..k..'"' end
+         s = s .. '['..k..'] = ' .. dump(v) .. ','
+      end
+      return s .. '} '
+   else
+      return tostring(o)
+   end
+end

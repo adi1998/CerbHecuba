@@ -142,5 +142,6 @@ end)
 
 modutil.mod.Path.Wrap("SetupMap", function (base)
     LoadPackages({Name = mod.InfestedCerberus.Package})
+    LoadVoiceBanks({ Name = "MelinoeField" })
     base()
 end)
