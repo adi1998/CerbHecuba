@@ -132,13 +132,13 @@ function PlayPettingSounds(id)
     end
 end
 
-function CerbPet1(base,args)
+function CerbPet1(base,args,duration)
     args.Name = "Familiar_Cerberus_BarkPreFire"
     base(args)
     args.Name = "Familiar_Cerberus_BarkFireLoop"
     -- game.thread(PlayPettingSounds,args.DestinationId)
     base(args)
-    wait(2.5)
+    wait(duration or 2.5)
     args.Name = "Familiar_Cerberus_BarkPostFire"
     base(args)
 end
@@ -156,8 +156,9 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
         if math.random(2) == 1 then
             args.Name = "Familiar_Cerberus_PoundLFire"
         end
-        PlaySound({ Name = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_ChargeGrowl", Id = args.DestinationId, ManagerCap = nil })
+        -- PlaySound({ Name = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_ChargeGrowl", Id = args.DestinationId, ManagerCap = nil })
         PlaySound({ Name = "/SFX/Enemy Sounds/Minotaur/HugeAxeSwing", Id = args.DestinationId, ManagerCap = nil })
+        PlaySound({ Name = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Bark", Id = args.DestinationId, ManagerCap = nil })
         return base(args)
     end
     if args.Name == "Familiar_Hound_Dig" or args.Name == "Familiar_Hound_Dig_ShovelPoint" then
@@ -194,13 +195,8 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
         -- PlaySound({ Name = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_PlagueRoar", Id = args.DestinationId, ManagerCap = nil })
         return
     end
-    if args.Name == "Familiar_Hound_HubHangout_1_Greet" then
-        args.Name = "Familiar_Cerberus_Idle"
-        base(args)
-        return
-    end
     if args.Name == "Familiar_Hound_Greet" then
-        game.thread(CerbPet1, base, args)
+        game.thread(CerbPet1, base, args, 1)
         return
     end
     if args.Name:find("^Familiar_Hound_") and not (args.Name:find("^Familiar_Hound_HubHangout")) then
