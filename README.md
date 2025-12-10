@@ -1,6 +1,6 @@
 ## Cerberus familiar
 
-Hades 2 mod which replaces Hecuba's model with Cerberus'. This is purely a cosmetic change. Sound effects are WIP.
+Hades 2 mod which replaces Hecuba's model and animations with Cerberus'.
 
 |![petting](images/petting.png)|![battle](images/battle.png)|
 | - | - |

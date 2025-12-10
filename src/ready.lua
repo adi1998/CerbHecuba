@@ -48,7 +48,7 @@ function SetupHoundCerb()
 	SetUnitProperty({ Property = "StopGraphic", Value = stop, DestinationId = houndId })
     SetThingProperty({ Property = "GrannyTexture", Value = texture, DestinationId = houndId })
     
-    SetScale({ Id = houndId, Fraction = 0.4 })
+    SetScale({ Id = houndId, Fraction = 0.45 })
 end
 
 -- "Familiar_Hound_Attack",
@@ -150,6 +150,13 @@ function CerbPet2(base,args)
     PlaySound({ Name = "/SFX/Enemy Sounds/Werewolf/EmoteHowling", Id = args.DestinationId, ManagerCap = nil })
 end
 
+function CerbPet3(base,args)
+    args.Name = "Familiar_Cerberus_Shake"
+    base(args)
+    -- PlayPettingSounds(args.DestinationId)
+    -- PlaySound({ Name = "/SFX/Enemy Sounds/Werewolf/EmoteHowling", Id = args.DestinationId, ManagerCap = nil })
+end
+
 modutil.mod.Path.Wrap("SetAnimation", function (base, args)
     if args.Name == "Familiar_Hound_Attack" then
         args.Name = "Familiar_Cerberus_PoundRFire"
@@ -187,19 +194,32 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
         return
     end
     if args.Name == "Familiar_Hound_Pet" then
-        if math.random(2) == 1 then
+        local petOption = math.random(3)
+        if petOption == 1 then
             game.thread(CerbPet1, base, args)
-        else
+        elseif petOption == 2 then
             CerbPet2(base, args)
+        else
+            CerbPet3(base, args)
         end
         -- PlaySound({ Name = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_PlagueRoar", Id = args.DestinationId, ManagerCap = nil })
         return
     end
     if args.Name == "Familiar_Hound_Greet" then
-        game.thread(CerbPet1, base, args, 1)
+        local petOption = math.random(2)
+        if petOption == 1 then
+            game.thread(CerbPet1, base, args, 1)
+        else
+            CerbPet2(base, args)
+        end
         return
     end
-    if args.Name:find("^Familiar_Hound_") and not (args.Name:find("^Familiar_Hound_HubHangout")) then
+    if args.Name == "Familiar_Hound_HubHangout_1_Greet" then
+        args.Name = "Familiar_Cerberus_Idle"
+        base(args)
+        return
+    end
+    if args.Name:find("^Familiar_Hound_") then
         print("missing hound animation override", args.Name)
     end
     return base(args)
