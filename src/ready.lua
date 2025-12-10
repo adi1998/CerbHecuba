@@ -132,6 +132,24 @@ function PlayPettingSounds(id)
     end
 end
 
+function CerbPet1(base,args)
+    args.Name = "Familiar_Cerberus_BarkPreFire"
+    base(args)
+    args.Name = "Familiar_Cerberus_BarkFireLoop"
+    -- game.thread(PlayPettingSounds,args.DestinationId)
+    base(args)
+    wait(2.5)
+    args.Name = "Familiar_Cerberus_BarkPostFire"
+    base(args)
+end
+
+function CerbPet2(base,args)
+    args.Name = "Familiar_Cerberus_Howl"
+    base(args)
+    -- PlayPettingSounds(args.DestinationId)
+    PlaySound({ Name = "/SFX/Enemy Sounds/Werewolf/EmoteHowling", Id = args.DestinationId, ManagerCap = nil })
+end
+
 modutil.mod.Path.Wrap("SetAnimation", function (base, args)
     if args.Name == "Familiar_Hound_Attack" then
         args.Name = "Familiar_Cerberus_PoundRFire"
@@ -166,10 +184,12 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
         return
     end
     if args.Name == "Familiar_Hound_Pet" then
-        args.Name = "Familiar_Cerberus_Howl"
-        base(args)
+        if math.random(2) == 1 then
+            game.thread(CerbPet1, base, args)
+        else
+            CerbPet2(base, args)
+        end
         -- PlaySound({ Name = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_PlagueRoar", Id = args.DestinationId, ManagerCap = nil })
-        PlayPettingSounds(args.DestinationId)
         return
     end
     if args.Name == "Familiar_Hound_HubHangout_1_Greet" then
@@ -177,7 +197,11 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
         base(args)
         return
     end
-    if args.Name:find("^Familiar_Hound_") then
+    if args.Name == "Familiar_Hound_Greet" then
+        game.thread(CerbPet1, base, args)
+        return
+    end
+    if args.Name:find("^Familiar_Hound_") and not (args.Name:find("^Familiar_Hound_HubHangout")) then
         print("missing hound animation override", args.Name)
     end
     return base(args)
