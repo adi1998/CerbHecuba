@@ -1,0 +1,27 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+[vars]
+zerpCerberus_Familiarenv = "rom.mods['zerp-Cerberus_Familiar'].lovely_env"
+
+[[patches]]
+[patches.pattern]
+target = "FamiliarLogic.lua"
+pattern = '''
+					SetAnimation({ Name = "Familiar_Hound_Dig", DestinationId = familiar.ObjectId })
+					waitUnmodified( 0.7, familiar.AIThreadName )
+					CreateAnimation({ Name = "ShovelDirtInSprayHound", DestinationId = familiar.ObjectId })
+					waitUnmodified( 0.82, familiar.AIThreadName )
+					CreateAnimation({ Name = "ShovelDirtInSprayHound", DestinationId = familiar.ObjectId })
+					wait( 0.98, familiar.AIThreadName )
+					CreateAnimation({ Name = "ShovelDirtOutSprayHound", DestinationId = familiar.ObjectId })
+					wait( 0.15, familiar.AIThreadName )
+'''
+position = "at"
+payload = '''
+					SetAnimation({ Name = "Familiar_Hound_Dig", DestinationId = familiar.ObjectId })
+					waitUnmodified( 0.7, familiar.AIThreadName )
+'''
+match_indent = true
+times = 1
