@@ -1026,7 +1026,7 @@
 		GroupName = "FX_Terrain"
 		PostRotateScaleY = 0.6
 		AngleFromOwner = "Take"
-		Scale = 1.33
+		Scale = 1.00
 		LocationZFromOwner = "Ignore"
 		LocationFromOwner = "Ignore"
 		UseAttachedFlasher = false
@@ -1067,6 +1067,27 @@
 			{ DurationFrames = 2 }
 		]
 	}
+    
+    {
+		Name = "Familiar_Cerberus_CerbDirtSlam"
+		FilePath = "Fx\DirtSlam\DirtSlam"
+		NumFrames = 31
+		PlaySpeed = 30
+		UseOwnAngle = false
+		AngleFromOwner = "Ignore"
+		Scale = 1
+		ScaleFromOwner = "Ignore"
+		GroupName = "FX_Standing"
+		RandomFlipHorizontal = true
+		OffsetZ = 10
+	}
+
+    {
+		Name = "Familiar_Cerberus_CerbDirtSlamMove"
+		InheritFrom = "Familiar_Cerberus_CerbDirtSlam"
+		LocationFromOwner = "Ignore"
+		GroupName = "FX_Dark"
+	}
 
     {
 		Name = "Familiar_Cerberus_CerbPawPrintMove"
@@ -1074,8 +1095,8 @@
 		CreateAnimations =
 		[
 			{ Name = "Familiar_Cerberus_CerberusTurnSlamDustPuffFront" }
-			{ Name = "CerberusTurnSlamDustPuffBack" }
-			{ Name = "CerbDirtSlamMove" }
+			{ Name = "Familiar_Cerberus_CerberusTurnSlamDustPuffBack" }
+			{ Name = "Familiar_Cerberus_CerbDirtSlamMove" }
 		]
 	}
 
@@ -1095,18 +1116,12 @@
 		Value = 0
 		ScaleFromOwner = "Ignore"
 		Scale = 1.2
-		StartAlpha = 0.7
+		StartAlpha = 0.6
 		EndAlpha = 0.5
 		OffsetZ = -60
 		DieWithOwner = false
 		GroupName = "FX_Standing"
 
-	}
-
-    {
-		Name = "Familiar_Cerberus_CerbPawPrintLeftSpawner"
-		InheritFrom = "Familiar_Cerberus_CerbPawPrintRightSpawner"
-		GrannyAttachedMarkerLocation = "InfestedCerberus_Rig:hand_01_L_JNT"
 	}
 
     {
@@ -1121,13 +1136,19 @@
 	}
 
     {
+		Name = "Familiar_Cerberus_CerbPawPrintLeftSpawner"
+		InheritFrom = "Familiar_Cerberus_CerbPawPrintRightSpawner"
+		GrannyAttachedMarkerLocation = "InfestedCerberus_Rig:hand_01_L_JNT"
+	}
+
+    {
 		Name = "Familiar_Cerberus_CerbBibMoveTrail"
 		FilePath = "Fx\Cerb\CerbBibTrail\CerbBibTrail"
 		NumFrames = 60
 		UseOwnAngle = false
 		AngleFromOwner = "Ignore"
 		GroupName = "FX_Terrain"
-		ScaleMin = 0.8
+		ScaleMin = 0.6
 		ScaleMax = 1.1
 		RandomFlipHorizontal = true
 		RandomPlaySpeedMin = 24
@@ -1141,6 +1162,15 @@
 		Hue = 0.05
 		Saturation = 0.15
 		Value = -0.05
+	}
+
+    {
+		Name = "Familiar_Cerberus_CerberusTurnSlamDustPuffBack"
+		InheritFrom = "Familiar_Cerberus_CerberusTurnSlamDustPuffFront"
+		GroupName = "FX_Dark"
+		ClearCreateAnimations = true
+		FilePath = "Fx\FieldsDustPuffBack\FieldsDustPuffBack"
+		DrawBehindOwner = true
 	}
 
 ]}
