@@ -126,7 +126,8 @@ function PlayPettingSounds(id)
     local lastFrame = 0.0
     wait(47/60.0)
     for index, sound in ipairs(Frames) do
-        PlaySound({ Name = sound.Sound, Id = id, ManagerCap = nil })
+        local soundid = PlaySound({ Name = sound.Sound, Id = id, ManagerCap = nil })
+        SetVolume({ Id = soundid, Value = 0.7, Duration = 0.0 })
         lastFrame = sound.Frame
     end
 end
