@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+- more petting animations
+- added some more sfx
+- added encounter end animtions
+
 ## [0.2.0] - 2025-12-10
 
 - Melionoe now address Cerberus instead of Hecuba
