@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-12-11
+
 - more petting animations
 - added some more sfx
 - added encounter end animtions
@@ -16,6 +18,7 @@
 
 - Initial version
 
-[unreleased]: https://github.com/adi1998/CerbHecuba/compare/0.2.0...HEAD
+[unreleased]: https://github.com/adi1998/CerbHecuba/compare/0.3.0...HEAD
+[0.3.0]: https://github.com/adi1998/CerbHecuba/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/adi1998/CerbHecuba/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/adi1998/CerbHecuba/compare/a5b6a6541c8c03ee647241d9848995b809f53d04...0.1.0
