@@ -745,7 +745,7 @@
 		ChainTo = "Familiar_Cerberus_BurrowToIdle"
 		OwnerImmobile = true
 		GrannyAnimationSpeed = 1.0
-		Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Emerge"
+		Sound = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Dig"
 		VerticalMaskInModelSpace = true
 		LargeObstacle3DModel = true
 		Frames =
