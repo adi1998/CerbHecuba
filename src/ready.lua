@@ -219,7 +219,7 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
         base(args)
         return
     end
-    if args.Name:find("^Familiar_Hound_") then
+    if args.Name ~= nil and args.Name:find("^Familiar_Hound_") then
         print("missing hound animation override", args.Name)
     end
     return base(args)
