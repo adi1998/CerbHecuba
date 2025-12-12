@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- update digging fx
+
 ## [0.3.0] - 2025-12-11
 
 - more petting animations
