@@ -702,7 +702,7 @@
 			}
 			{
 				Frame = 30
-				FootstepFxR = "CerbDirtScrapeR"
+				FootstepFxR = "Familiar_Cerberus_CerbDirtSlam"
 			}
 			{
 				Frame = 40
@@ -710,7 +710,7 @@
 			}
 			{
 				Frame = 43
-				FootstepFxR = "CerbDirtScrapeL"
+				FootstepFxR = "Familiar_Cerberus_CerbDirtSlam"
 			}
 			{
 				Frame = 50
@@ -718,7 +718,7 @@
 			}
 			{
 				Frame = 54
-				FootstepFxR = "CerbDirtScrapeR"
+				FootstepFxR = "Familiar_Cerberus_CerbDirtSlam"
 			}
 			{
 				Frame = 90
@@ -760,7 +760,7 @@
 			}
 			{
 				Frame = 14
-				FootstepFxR = "CerberusEmergeFx"
+				FootstepFxR = "Familiar_Cerberus_CerberusEmergeFx"
 			}
 			{
 				Frame = 16
@@ -799,7 +799,7 @@
 			}
 			{
 				Frame = 14
-				FootstepFxR = "CerberusEmergeFx"
+				FootstepFxR = "Familiar_Cerberus_CerberusEmergeFx"
 			}
 			{
 				Frame = 16
@@ -1171,6 +1171,22 @@
 		ClearCreateAnimations = true
 		FilePath = "Fx\FieldsDustPuffBack\FieldsDustPuffBack"
 		DrawBehindOwner = true
+	}
+
+	{
+		Name = "Familiar_Cerberus_CerberusEmergeFx"
+		FilePath = "Dev\blank_invisible"
+		DurationFrames = 2
+		VisualFx = "CerbDirtEmergeParticles"
+		VisualFxIntervalMin = 0.01
+		VisualFxIntervalMax = 0.01
+		VisualFxCap = 12
+		CreateAnimations =
+		[
+			{ Name = "Familiar_Cerberus_CerbDirtSlam" }
+			{ Name = "Familiar_Cerberus_CerberusTurnSlamDustPuffFront" }
+			{ Name = "Familiar_Cerberus_CerberusTurnSlamDustPuffBack" }
+		]			
 	}
 
 ]}
