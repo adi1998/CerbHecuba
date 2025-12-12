@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Add compatibility with FamiliarCostume
+
 ## [0.3.1] - 2025-12-12
 
 - update digging fx
