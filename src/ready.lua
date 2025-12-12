@@ -11,7 +11,6 @@ mod.InfestedCerberus = {
 function SetupHoundCerb()
     local  unit = mod.InfestedCerberus
     local mesh = unit.GrannyModel
-    local texture = unit.GrannyTexture
     local graphic = unit.Graphic
 
     local start = unit.StartGraphic
@@ -41,12 +40,18 @@ function SetupHoundCerb()
     end
     print("hound to creb")
     local houndId = houndIds[1]
+
+    -- local texture = ""
+    -- if rom.mods["zerp-FamiliarCostume"] ~= nil then
+    --     texture = ""
+    -- end
+
     SetThingProperty({ Property = "GrannyModel", Value = mesh, DestinationId = houndId })
     SetThingProperty({ Property = "Graphic", Value = graphic, DestinationId = houndId })
     SetUnitProperty({ Property = "StartGraphic", Value = start, DestinationId = houndId })
 	SetUnitProperty({ Property = "MoveGraphic", Value = move, DestinationId = houndId })
 	SetUnitProperty({ Property = "StopGraphic", Value = stop, DestinationId = houndId })
-    SetThingProperty({ Property = "GrannyTexture", Value = texture, DestinationId = houndId })
+    -- SetThingProperty({ Property = "GrannyTexture", Value = texture, DestinationId = houndId })
     
     SetScale({ Id = houndId, Fraction = 0.45 })
 end
