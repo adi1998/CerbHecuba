@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.4.0] - 2025-12-13
+
 - Add compatibility with FamiliarCostume
 
 ## [0.3.1] - 2025-12-12
@@ -24,7 +26,8 @@
 
 - Initial version
 
-[unreleased]: https://github.com/adi1998/CerbHecuba/compare/0.3.1...HEAD
+[unreleased]: https://github.com/adi1998/CerbHecuba/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/adi1998/CerbHecuba/compare/0.3.1...0.4.0
 [0.3.1]: https://github.com/adi1998/CerbHecuba/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/adi1998/CerbHecuba/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/adi1998/CerbHecuba/compare/0.1.0...0.2.0
