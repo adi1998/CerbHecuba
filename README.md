@@ -11,4 +11,4 @@ Use r2modman by ebkr from [Thunderstore](https://thunderstore.io/package/ebkr/r2
 
 While the mod shouldn't touch any save data it is recommended to backup your save from `%USERPROFILE%\Saved Games\Hades II\Profile*.sav` in case there are unforseen issues.
 
-Use [Familiar Costume](https://github.com/adi1998/FamiliarCostume) for switching skins.
+Use [Familiar Costume Randomzier](https://github.com/adi1998/FamiliarCostume) for switching skins.

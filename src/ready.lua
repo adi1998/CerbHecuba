@@ -42,7 +42,7 @@ function SetupHoundCerb()
     local houndId = houndIds[1]
 
     -- local texture = ""
-    -- if rom.mods["zerp-FamiliarCostume"] ~= nil then
+    -- if rom.mods["zerp-Familiar_Costume_Randomizer"] ~= nil then
     --     texture = ""
     -- end
 
@@ -51,7 +51,7 @@ function SetupHoundCerb()
     SetUnitProperty({ Property = "StartGraphic", Value = start, DestinationId = houndId })
 	SetUnitProperty({ Property = "MoveGraphic", Value = move, DestinationId = houndId })
 	SetUnitProperty({ Property = "StopGraphic", Value = stop, DestinationId = houndId })
-    if rom.mods["zerp-FamiliarCostume"] == nil then
+    if rom.mods["zerp-Familiar_Costume_Randomizer"] == nil then
         SetThingProperty({ Property = "GrannyTexture", Value = "", DestinationId = houndId })
     end
     
