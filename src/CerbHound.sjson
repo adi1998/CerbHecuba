@@ -1,16 +1,4 @@
 { Animations = [
-	
-	{
-		Name = "EnemyInfestedCerberusBaseAnimation"
-		GrannyModel = "InfestedCerberus_Mesh"
-		GrannyAnimation = "null"
-		GrannyAnimationSpeed = 1.0
-		Scale = 1.0
-		Loop = false
-		Enable3DShadow = true
-		OwnerNoInvulnerableCoverage = true
-		LargeObstacle3DModel = true
-	}
 
 	/*Idle and Move*/
 
@@ -960,37 +948,6 @@
 		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
 		GrannyAnimation = "InfestedCerberus_Base_FireballFire_C_00"
 		ChainTo = "Familiar_Cerberus_C_BreathFireLoop"
-	}
-
-	{
-		Name = "CerbBreathFireMouthGlow"
-		FilePath = "Particles\particle_glow_egg_horizontal"
-		ScaleX = 1
-		GroupName = "FX_Standing_Add"
-		SortMode = "FromParent"
-		SortFromOwner = "Maintain"
-		StartRed = 1
-		StartGreen = 0.3
-		StartBlue = 0.1
-		EndRed = 0.999
-		EndGreen = 0.5
-		EndBlue = 0.25
-		PingPongColor = true
-		StartAlpha = 0.5
-		EndAlpha = 1
-		RandomDurationMin = 0.4
-		RandomDurationMax = 0.6
-		StartScale = 1
-		EndScale = 1.5
-		PingPongScale = true
-		Loop = true
-		Material = "Unlit"
-		Scale = 1
-		OffsetZ = -60
-		ScaleFromOwner = "Ignore"
-		GrannyAttachedMarkerLocation = "InfestedCerberus_Rig:upperJaw_01_M_JNT"
-		OriginX = 120
-		OriginY = 84
 	}
 
 	{
