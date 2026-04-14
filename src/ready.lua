@@ -221,7 +221,7 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
         end
         return
     end
-    if args.Name == "Familiar_Hound_HubHangout_1_Greet" then
+    if args.Name == "Familiar_Hound_Greet_Hub" then
         args.Name = "Familiar_Cerberus_Idle"
         base(args)
         return
