@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-04-15
+
 - Add new pet animation as seen in the boss fight after the True Ending
 - fixes for post launch patch 2
 
@@ -29,7 +31,8 @@
 
 - Initial version
 
-[unreleased]: https://github.com/adi1998/CerbHecuba/compare/0.4.0...HEAD
+[unreleased]: https://github.com/adi1998/CerbHecuba/compare/0.5.0...HEAD
+[0.5.0]: https://github.com/adi1998/CerbHecuba/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/adi1998/CerbHecuba/compare/0.3.1...0.4.0
 [0.3.1]: https://github.com/adi1998/CerbHecuba/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/adi1998/CerbHecuba/compare/0.2.0...0.3.0
