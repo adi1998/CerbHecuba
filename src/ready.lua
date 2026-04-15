@@ -166,6 +166,7 @@ function CerbPet3(base,args)
 end
 
 function CerbPet4(base, args)
+    game.wait(0.4)
     args.Name = "Familiar_Cerberus_HappyBark"
     base(args)
     game.wait(1.2)
