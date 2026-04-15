@@ -1,3 +1,4 @@
+---@diagnostic disable: cast-local-type
 
 mod.InfestedCerberus = {
     GrannyModel = "InfestedCerberus_Mesh",
@@ -34,7 +35,7 @@ function SetupHoundCerb()
     --     return
     -- end
 
-    local houndIds = GetIdsByType({ Name = "HoundFamiliar" })
+    local houndIds = game.GetIdsByType({ Name = "HoundFamiliar" })
     if #houndIds < 1 then
         return
     end
@@ -46,16 +47,16 @@ function SetupHoundCerb()
     --     texture = ""
     -- end
 
-    SetThingProperty({ Property = "GrannyModel", Value = mesh, DestinationId = houndId })
-    SetThingProperty({ Property = "Graphic", Value = graphic, DestinationId = houndId })
-    SetUnitProperty({ Property = "StartGraphic", Value = start, DestinationId = houndId })
-	SetUnitProperty({ Property = "MoveGraphic", Value = move, DestinationId = houndId })
-	SetUnitProperty({ Property = "StopGraphic", Value = stop, DestinationId = houndId })
+    game.SetThingProperty({ Property = "GrannyModel", Value = mesh, DestinationId = houndId })
+    game.SetThingProperty({ Property = "Graphic", Value = graphic, DestinationId = houndId })
+    game.SetUnitProperty({ Property = "StartGraphic", Value = start, DestinationId = houndId })
+	game.SetUnitProperty({ Property = "MoveGraphic", Value = move, DestinationId = houndId })
+	game.SetUnitProperty({ Property = "StopGraphic", Value = stop, DestinationId = houndId })
     if rom.mods["zerp-Familiar_Costume_Randomizer"] == nil then
-        SetThingProperty({ Property = "GrannyTexture", Value = "", DestinationId = houndId })
+        game.SetThingProperty({ Property = "GrannyTexture", Value = "", DestinationId = houndId })
     end
-    
-    SetScale({ Id = houndId, Fraction = 0.45 })
+
+    game.SetScale({ Id = houndId, Fraction = 0.45 })
 end
 
 -- "Familiar_Hound_Attack",
@@ -71,7 +72,7 @@ CerbAnimation = {
     "ShovelDirtOutSprayHound",
 }
 
-FamiliarData.HoundFamiliar.Using.Animation = CerbAnimation
+game.FamiliarData.HoundFamiliar.Using.Animation = CerbAnimation
 
 
 modutil.mod.Path.Wrap("AssignFamiliarKits", function (base, ...)
@@ -131,10 +132,10 @@ function PlayPettingSounds(id)
         },
     }
     local lastFrame = 0.0
-    wait(47/60.0)
+    game.wait(47/60.0)
     for index, sound in ipairs(Frames) do
-        local soundid = PlaySound({ Name = sound.Sound, Id = id, ManagerCap = nil })
-        SetVolume({ Id = soundid, Value = 0.7, Duration = 0.0 })
+        local soundid = game.PlaySound({ Name = sound.Sound, Id = id, ManagerCap = nil })
+        game.SetVolume({ Id = soundid, Value = 0.7, Duration = 0.0 })
         lastFrame = sound.Frame
     end
 end
@@ -145,7 +146,7 @@ function CerbPet1(base,args,duration)
     args.Name = "Familiar_Cerberus_BarkFireLoop"
     -- game.thread(PlayPettingSounds,args.DestinationId)
     base(args)
-    wait(duration or 2.5)
+    game.wait(duration or 2.5)
     args.Name = "Familiar_Cerberus_BarkPostFire"
     base(args)
 end
@@ -154,7 +155,7 @@ function CerbPet2(base,args)
     args.Name = "Familiar_Cerberus_Howl"
     base(args)
     -- PlayPettingSounds(args.DestinationId)
-    PlaySound({ Name = "/SFX/Enemy Sounds/Werewolf/EmoteHowling", Id = args.DestinationId, ManagerCap = nil })
+    game.PlaySound({ Name = "/SFX/Enemy Sounds/Werewolf/EmoteHowling", Id = args.DestinationId, ManagerCap = nil })
 end
 
 function CerbPet3(base,args)
@@ -164,6 +165,15 @@ function CerbPet3(base,args)
     -- PlaySound({ Name = "/SFX/Enemy Sounds/Werewolf/EmoteHowling", Id = args.DestinationId, ManagerCap = nil })
 end
 
+function CerbPet4(base, args)
+    args.Name = "Familiar_Cerberus_HappyBark"
+    base(args)
+    game.wait(1.2)
+    args.Name = "Familiar_Cerberus_HappyIdle_End"
+	base(args)
+	game.wait(1.5)
+end
+
 modutil.mod.Path.Wrap("SetAnimation", function (base, args)
     if args.Name == "Familiar_Hound_Attack" then
         args.Name = "Familiar_Cerberus_PoundRFire"
@@ -171,15 +181,15 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
             args.Name = "Familiar_Cerberus_PoundLFire"
         end
         -- PlaySound({ Name = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_ChargeGrowl", Id = args.DestinationId, ManagerCap = nil })
-        PlaySound({ Name = "/SFX/Enemy Sounds/Minotaur/HugeAxeSwing", Id = args.DestinationId, ManagerCap = nil })
-        PlaySound({ Name = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Bark", Id = args.DestinationId, ManagerCap = nil })
+        game.PlaySound({ Name = "/SFX/Enemy Sounds/Minotaur/HugeAxeSwing", Id = args.DestinationId, ManagerCap = nil })
+        game.PlaySound({ Name = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_Bark", Id = args.DestinationId, ManagerCap = nil })
         return base(args)
     end
     if args.Name == "Familiar_Hound_Dig" or args.Name == "Familiar_Hound_Dig_ShovelPoint" then
         args.Name = "Familiar_Cerberus_BurrowStart"
         base(args)
         args.Name = "Familiar_Cerberus_BurrowEmerge"
-        waitUnmodified( 1.8, MapState.FamiliarUnit.AIThreadName )
+        game.waitUnmodified( 1.8, game.MapState.FamiliarUnit.AIThreadName )
         base(args)
         return
     end
@@ -201,13 +211,15 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
         return
     end
     if args.Name == "Familiar_Hound_Pet" then
-        local petOption = math.random(3)
+        local petOption = math.random(4)
         if petOption == 1 then
             game.thread(CerbPet1, base, args)
         elseif petOption == 2 then
             CerbPet2(base, args)
-        else
+        elseif petOption == 3 then
             CerbPet3(base, args)
+        else
+            game.thread(CerbPet4, base, args)
         end
         -- PlaySound({ Name = "/SFX/Enemy Sounds/CorruptedCerberus/Cerberus_PlagueRoar", Id = args.DestinationId, ManagerCap = nil })
         return
@@ -233,7 +245,7 @@ modutil.mod.Path.Wrap("SetAnimation", function (base, args)
 end)
 
 modutil.mod.Path.Wrap("SetupMap", function (base)
-    LoadPackages({Name = mod.InfestedCerberus.Package})
-    LoadVoiceBanks({ Names = { "BiomeI", "BiomeIHouse" }})
+    game.LoadPackages({Name = mod.InfestedCerberus.Package})
+    game.LoadVoiceBanks({ Names = { "BiomeI", "BiomeIHouse" }})
     base()
 end)

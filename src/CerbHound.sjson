@@ -1146,4 +1146,73 @@
 		]			
 	}
 
+	// Happy Idle
+	{
+		Name = "Familiar_Cerberus_HappyIdle"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_IdleHappy_C_00"
+		Loop = true
+		Blends =
+		[
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_HappyBark"
+				Duration = 3
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_HappyBark"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_BarkHappy_C_00"
+		ChainTo = "Familiar_Cerberus_HappyIdle"
+		Frames =
+		[
+			{
+				Frame = 10
+				Sound = "/VO/CerberusBarks"
+			}
+			{
+				Frame = 41
+				Sound = "/VO/CerberusBarks"
+			}
+		]
+		Blends =
+		[
+			{
+				BlendTransitionFrom = "BlendTransitionFromAll"
+				Duration = 6
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_HappyIdle"
+				Duration = 6
+			}
+		]
+	}
+
+	{
+		Name = "Familiar_Cerberus_HappyIdle_End"
+		InheritFrom = "EnemyInfestedCerberusBaseAnimation"
+		GrannyAnimation = "InfestedCerberus_Base_IdleHappyToIdleAngry_C_00"
+		ChainTo = "Familiar_Cerberus_Idle"
+		Blends =
+		[
+			{
+				BlendTransitionFrom = "BlendTransitionFromAll"
+				Duration = 6
+			}
+			{
+				BlendTransitionFrom = "Familiar_Cerberus_HappyIdle"
+				Duration = 6
+			}
+		]
+		Frames =
+		[
+			{
+				Frame = 50
+				Sound = "/SFX/Enemy Sounds/Polyphemus/PolyphemusFistPalmIntro"
+			}
+		]
+	}
+
 ]}

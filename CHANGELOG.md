@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- Add new pet animation as seen in the boss fight after the True Ending
+- fixes for post launch patch 2
+
 ## [0.4.0] - 2025-12-13
 
 - Add compatibility with FamiliarCostume
