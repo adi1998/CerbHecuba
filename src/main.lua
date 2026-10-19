@@ -41,7 +41,6 @@ public.config = config -- so other mods can access our config
 local function on_ready()
     -- what to do when we are ready, but not re-do on reload.
     mod = modutil.mod.Mod.Register(_PLUGIN.guid)
-    import 'sjson.lua'
     import 'voice.lua'
     import 'ready.lua'
 end

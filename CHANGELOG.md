@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Replace sjson hook with static sjson file.
+
 ## [0.5.0] - 2026-04-15
 
 - Add new pet animation as seen in the boss fight after the True Ending
