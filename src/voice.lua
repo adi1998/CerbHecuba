@@ -17,8 +17,14 @@ mod.CerbInteractVoice = {
     { Cue = "/VO/MelinoeField_3896", Text = "You're a fine dog.", PlayFirst = true },
     { Cue = "/VO/MelinoeField_3899", Text = "There you go..." },
     { Cue = "/VO/MelinoeField_3900", Text = "Let me get that for you..." },
+    { Cue = "/VO/Melinoe_3779", Text = "You're all right." },
+}
+
+game.GlobalVoiceLines.FamiliarEquipVoiceLines[1][17].GameStateRequirements = {Skip = true}
+
+game.FamiliarData.HoundFamiliar.EquipVoiceLines = {
+    { GlobalVoiceLines = "FamiliarEquipVoiceLines" },
 }
 
 game.FamiliarData.HoundFamiliar.InteractVoiceLines[2] = mod.CerbInteractVoice
 game.FamiliarData.HoundFamiliar.SpecialInteractCooldown = 15
--- /SFX/Enemy Sounds/CorruptedCerberus/Cerberus_PlagueRoar

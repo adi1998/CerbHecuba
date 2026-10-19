@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- Block some voice lines referencing Hecuba from playing.
 - Replace sjson hook with static sjson file.
 
 ## [0.5.0] - 2026-04-15
