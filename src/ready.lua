@@ -26,26 +26,12 @@ function SetupHoundCerb()
     if stop == "" or stop == "None" then
         stop = nil
     end
-    
-    -- local familiar = MapState.FamiliarUnit
-    -- if familiar == nil then
-    --     return
-    -- end
-    -- if GameState.EquippedFamiliar ~= "HoundFamiliar" then
-    --     return
-    -- end
 
     local houndIds = game.GetIdsByType({ Name = "HoundFamiliar" })
     if #houndIds < 1 then
         return
     end
-    print("hound to creb")
     local houndId = houndIds[1]
-
-    -- local texture = ""
-    -- if rom.mods["zerp-Familiar_Costume_Randomizer"] ~= nil then
-    --     texture = ""
-    -- end
 
     game.SetThingProperty({ Property = "GrannyModel", Value = mesh, DestinationId = houndId })
     game.SetThingProperty({ Property = "Graphic", Value = graphic, DestinationId = houndId })
@@ -87,10 +73,13 @@ end)
 
 modutil.mod.Path.Wrap("SetupFamiliarCostume", function (base, familiar, args)
     if familiar.Name == "HoundFamiliar" then
-        SetupHoundCerb()
-        return
+        args = args or {}
+        args.Animation = nil
     end
-    base(familiar,args)
+    base(familiar, args)
+    if familiar.Name == "HoundFamiliar" then
+        SetupHoundCerb()
+    end
 end)
 
 -- Familiar_Hound_Dig_ShovelPoint

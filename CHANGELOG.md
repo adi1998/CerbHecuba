@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Compatbility update for [CosmeticsAPI](https://old.thunderstore.io/c/hades-ii/p/NikkelM/Cosmetics_API/) based re-write of [Familiar Costume Randomizer](https://old.thunderstore.io/c/hades-ii/p/zerp/Familiar_Costume_Randomizer/)
+
 ## [0.6.0] - 2026-10-19
 
 - Block some voice lines referencing Hecuba from playing.
