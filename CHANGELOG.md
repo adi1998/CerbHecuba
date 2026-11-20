@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-11-20
+
 - Compatbility update for [CosmeticsAPI](https://old.thunderstore.io/c/hades-ii/p/NikkelM/Cosmetics_API/) based re-write of [Familiar Costume Randomizer](https://old.thunderstore.io/c/hades-ii/p/zerp/Familiar_Costume_Randomizer/)
 
 ## [0.6.0] - 2026-10-19
@@ -38,7 +40,8 @@
 
 - Initial version
 
-[unreleased]: https://github.com/adi1998/CerbHecuba/compare/0.6.0...HEAD
+[unreleased]: https://github.com/adi1998/CerbHecuba/compare/0.7.0...HEAD
+[0.7.0]: https://github.com/adi1998/CerbHecuba/compare/0.6.0...0.7.0
 [0.6.0]: https://github.com/adi1998/CerbHecuba/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/adi1998/CerbHecuba/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/adi1998/CerbHecuba/compare/0.3.1...0.4.0
